@@ -8,16 +8,38 @@
 	  <maven.compiler.target>15</maven.compiler.target>
   </properties>
   <name>JavaPerformTest</name>
+  
   <dependencies>
-  	<dependency>
+  	<!-- <dependency>
   		<groupId>com.sun.net.httpserver</groupId>
   		<artifactId>http</artifactId>
   		<version>20070405</version>
-  	</dependency>
-  	<!-- <dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-lang3</artifactId>
-  		<version>3.12.0</version>
   	</dependency> -->
+  	<dependency>
+  		<groupId>org.json</groupId>
+  		<artifactId>json</artifactId>
+  		<version>20211205</version>
+  	</dependency>
   </dependencies>
+ 
+ 
+ <build>
+  <plugins>
+    <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>core.Main</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 </project>
