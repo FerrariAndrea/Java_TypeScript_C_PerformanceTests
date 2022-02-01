@@ -52,7 +52,7 @@ public class Test1 {
 		if(resp==null) {
 			throw new IOException("GET query resp is null");
 		}
-
+		System.out.println("\n\n---->"+resp.toString()+"\n");
 		JSONObject obj = new JSONObject(resp);
 		JSONArray arr = obj.getJSONObject("results").getJSONArray("bindings");
 		//compare all the query result triples with all the triples in the own session, 

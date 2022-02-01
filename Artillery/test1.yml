@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:81"
+  phases:
+    - duration: 20
+      arrivalRate: 1
+      name: phase1
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 30
+      name: phase2
+scenarios:
+  - flow: 
+    - loop: 
+        - think: 2
+        - get:
+            url: "/test1?ID={{ $randomNumber(1,10000) }}"
+      count: 20
+  

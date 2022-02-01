@@ -20,7 +20,7 @@ import core.test1.Test1;
 
 public class Main {
 
-	private static final int PORT = 82;
+	private static final int PORT = 81;
 	private static final int THREAD_POOL= 10;
 
 	public static void main(String[] args) throws Exception {
