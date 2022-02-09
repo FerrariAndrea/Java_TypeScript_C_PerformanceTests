@@ -12,4 +12,5 @@ For each user call, the user:
 * will ask to blazegraph all the triples in the store, excluding their own triples
 * will compare all the query result triples with all the triples in the own session, and if there is a match it will increase a counter (alweys in their own session)
 
-
+Summary Results
+![Results](Results/Results.jpg)
