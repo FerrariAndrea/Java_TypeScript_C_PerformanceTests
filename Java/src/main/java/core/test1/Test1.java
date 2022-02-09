@@ -24,6 +24,7 @@ public class Test1 {
 	public static void init() throws IOException {
 		//clean graph
 		sendPOSTUpdate("DELETE WHERE {GRAPH <"+graph+"> { ?s ?p ?o }}");
+		System.out.println("RDF store clenned");
 	}
 	
 	public static String processRequest(Map<String,String> param) throws IOException, InterruptedException {
@@ -52,7 +53,7 @@ public class Test1 {
 		if(resp==null) {
 			throw new IOException("GET query resp is null");
 		}
-		System.out.println("\n\n---->"+resp.toString()+"\n");
+		//System.out.println("\n\n---->"+resp.toString()+"\n");
 		JSONObject obj = new JSONObject(resp);
 		JSONArray arr = obj.getJSONObject("results").getJSONArray("bindings");
 		//compare all the query result triples with all the triples in the own session, 

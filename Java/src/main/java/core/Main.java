@@ -21,7 +21,7 @@ import core.test1.Test1;
 public class Main {
 
 	private static final int PORT = 81;
-	private static final int THREAD_POOL= 10;
+	private static final int THREAD_POOL= 1;
 
 	public static void main(String[] args) throws Exception {
 		Test1.init();
@@ -57,7 +57,8 @@ public class Main {
 		ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor)Executors.newFixedThreadPool(THREAD_POOL);
 		server.setExecutor(threadPoolExecutor);    	
 		server.start();
-		System.out.println(" Server started on port: "+ PORT);
+		System.out.println("Server started on port: "+ PORT);
+		System.out.println("THREAD_POOL: "+ THREAD_POOL);
 	}
 
 
