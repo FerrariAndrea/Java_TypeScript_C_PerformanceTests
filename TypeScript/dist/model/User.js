@@ -16,7 +16,7 @@ class User {
         for (const x in arr) {
             const temp = arr[x].o.value;
             for (let y = 0; y < this.mytriples.length; y++) {
-                if (this.mytriples[y].objectMatch(temp)) {
+                if (this.mytriples[y].object === temp) {
                     this.counter += 1;
                 }
             }

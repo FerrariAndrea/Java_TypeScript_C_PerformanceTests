@@ -12,6 +12,7 @@ class User{
         this.counter=0;
 		this.mytriples= new Array<Triple>();
     }
+	
 
 
     add(t: Triple):void {
@@ -26,7 +27,7 @@ class User{
 		for (const x in arr) {
 			const temp:string = arr[x].o.value;
 			for (let y=0;y<this.mytriples.length;y++) {
-				if(this.mytriples[y].objectMatch(temp)) {
+				if(this.mytriples[y].object ===temp) {
 					this.counter+=1;
 				}
 			}

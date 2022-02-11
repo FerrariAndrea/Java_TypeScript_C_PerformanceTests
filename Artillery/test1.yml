@@ -2,7 +2,7 @@ config:
   target: "http://localhost:81"
   phases:
     - duration: 10
-      arrivalCount: 60
+      arrivalCount: 10
       name: phase1
   payload:
     path: "users.csv"

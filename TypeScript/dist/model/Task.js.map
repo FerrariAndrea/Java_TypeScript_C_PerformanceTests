@@ -1,0 +1,1 @@
+{"version":3,"file":"Task.js","sourceRoot":"","sources":["../../src/model/Task.ts"],"names":[],"mappings":";;AAGA,MAAM,IAAI;IAMN,YAAY,EAAS,EAAC,CAAM;QACxB,IAAI,CAAC,GAAG,GAAC,EAAE,CAAC;QACZ,IAAI,CAAC,EAAE,GAAC,CAAC,CAAC;QACV,IAAI,CAAC,IAAI,GAAC,oBAAoB,CAAC;IACnC,CAAC;CAGJ;AAGD,kBAAe,IAAI,CAAC"}

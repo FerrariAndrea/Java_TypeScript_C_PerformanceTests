@@ -17,9 +17,9 @@ class Triple{
 					+this.subject+"><"+this.predicate+">\""+this.object+"\".}}";
 	}
 	
-	objectMatch(str: string):boolean {
-		return this.object===str;
-	}
+	// objectMatch(str: string):boolean {
+	// 	return this.object===str;
+	// }
 }
 
 export default Triple;

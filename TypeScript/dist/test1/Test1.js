@@ -5,8 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const Triple_1 = __importDefault(require("../model/Triple"));
-const User_1 = __importDefault(require("../model/User"));
-const ServerSession_1 = __importDefault(require("./ServerSession"));
 class Test1 {
     static init() {
         Test1.sendPOSTUpdate("DELETE WHERE {GRAPH <" + Test1.graph + "> { ?s ?p ?o }}", () => {
@@ -16,17 +14,17 @@ class Test1 {
             console.log("Post Error: ", err);
         });
     }
-    static processRequest(id, res) {
+    static processRequest(id, u, cb) {
         if (id === null || id === undefined) {
-            // console.log("Error: ID is: ",id);
-            res.send("Error: ID is null");
+            console.log("Error: ID is: ", id);
+            cb(u, "Error: ID is null");
         }
         else {
-            let u = ServerSession_1.default.getUser(id);
-            if (u === null || u === undefined) {
-                u = new User_1.default(id);
-                ServerSession_1.default.addUser(id, u);
-            }
+            //  u = ServerSession.getUser(id);
+            // if(u===null|| u===undefined) {
+            //     u=new User(id);
+            //     ServerSession.addUser(id,u);
+            // }
             //generate a random triple 
             const t = Test1.generateTriple(u.mySubject);
             //save the generated triple in own server session
@@ -35,31 +33,32 @@ class Test1 {
             //console.log("t.generateInsertSPARQL(Test1.graph)",t.generateInsertSPARQL(Test1.graph));
             Test1.sendPOSTUpdate(t.generateInsertSPARQL(Test1.graph), (ris) => {
                 if (ris === null || ris === undefined) {
-                    // console.log("Post: ",ris);
-                    res.send("Post update resp is null");
+                    console.log("Post: ", ris);
+                    cb(u, "Post update resp is null");
                 }
                 else {
                     //ask to blazegraph all the triples in the store, excluding their own triples
                     Test1.sendGETQuery(u.generateSparqlQuery(Test1.graph), (ris2) => {
                         var _a, _b;
                         if (ris2 === null || ((_b = (_a = ris2 === null || ris2 === void 0 ? void 0 : ris2.data) === null || _a === void 0 ? void 0 : _a.results) === null || _b === void 0 ? void 0 : _b.bindings) === undefined) {
-                            // console.log("ris2: ",ris2);
-                            res.send("GET query resp is null");
+                            console.log("ris2: ", ris2);
+                            cb(u, "GET query resp is null");
                         }
                         else {
                             //compare all the query result triples with all the triples in the own session, 
                             //and if there is a match it will increase a counter
                             const userStatus = "User " + id + " counter: " + u.countMatch(ris2.data.results.bindings);
                             console.log(userStatus);
-                            res.send(userStatus);
+                            cb(u, userStatus);
                         }
                     }, (err2) => {
-                        res.send("GET Error: " + err2);
+                        console.log("Post Error: ", err2);
+                        cb(u, "GET Error: " + err2);
                     });
                 }
             }, (err) => {
-                // console.log("Post Error: ",err);
-                res.send("Post Error: " + err);
+                console.log("Post Error: ", err);
+                cb(u, "Post Error: " + err);
             });
         }
     }
